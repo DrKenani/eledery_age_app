@@ -6,6 +6,7 @@ import plotly.graph_objs as go
 import pandas as pd
 import sklearn
 from PIL import Image
+from pathlib import Path
 
 st.set_page_config(
         page_title="eldery_age_app",
@@ -61,9 +62,11 @@ st.markdown('---')
 st.subheader('Mesures')
 container2= st.container()
 # Charger les images en utilisant des chemins relatifs
-image1 = Image.open("mesure_femur.png")
-image2 = Image.open("mesure_colonne.png")
-image3 = Image.open("mesure_densite.png")
+image_folder = Path(__file__).parent / "images"
+
+image1 = Image.open(image_folder/"mesure_femur.png")
+image2 = Image.open(image_folder/"mesure_colonne.png")
+image3 = Image.open(image_folder/"mesure_densite.png")
 
 container2.write("Voici comment effectuer les mesures: ")
 container2.image(image1, caption='mesure du fémur')
@@ -96,7 +99,9 @@ st.markdown('---')
 
 st.subheader('Visualisation du modele')
 container4= st.container()
-df_for_graph = pd.read_excel(r"C:\Users\Asus PC\AAA IA\Machine Learning\these anthropo\app_these\df_for_graph.xlsx")
+
+excel_path = Path(__file__).parent / "data/df_for_graph.xlsx"
+df_for_graph = pd.read_excel(excel_path)
 
 fig = go.Figure(data=[go.Scatter3d(
     x=df_for_graph['diff'],
