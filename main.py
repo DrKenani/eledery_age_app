@@ -5,6 +5,7 @@ import joblib
 import plotly.graph_objs as go
 import pandas as pd
 import sklearn
+from PIL import Image
 
 st.set_page_config(
         page_title="eldery_age_app",
@@ -59,12 +60,17 @@ if container1.button("Prédire"):
 st.markdown('---')
 st.subheader('Mesures')
 container2= st.container()
+# Charger les images en utilisant des chemins relatifs
+image1 = Image.open("mesure_femur.png")
+image2 = Image.open("mesure_colonne.png")
+image3 = Image.open("mesure_densite.png")
+
 container2.write("Voici comment effectuer les mesures: ")
-container2.image("mesure_femur.PNG", caption='mesure du fémur')
+container2.image(image1, caption='mesure du fémur')
 container2.write("- La taille du fémur est mesurée sur le fémur droit, en mesurant ligne droite entre le plus haut point et le plus bas")
-container2.image("mesure_colonne.PNG", caption='mesure de la colonne vertébrale')
+container2.image(image2, caption='mesure de la colonne vertébrale')
 container2.write("- La taille de la colonne vertébrale sera mesurée selon la ligne droite entre la première vertèbre cervicale C1 et la dernière vertèbre lombaire L5. Les images scannographiques étant compartimentées, la mesure est réalisée en 2 étapes, en additionnant la taille des vertèbres cervicales à la taille des vertèbres dorsales et lombaires. Mais vous pouvez effectuer la mesure en une seule fois, si vous le pouvez.")
-container2.image("mesure_densite.PNG", caption='mesure de la densité osseuse')
+container2.image(image3, caption='mesure de la densité osseuse')
 container2.write("- La mesure de la densité est effectuée sur les quatre premières vertèbres lombaires et nous utilisons la densité la moins importante enregistrée de L1 à L4.")
 
 
