@@ -4,6 +4,7 @@ from scipy.stats import boxcox
 import joblib
 import plotly.graph_objs as go
 import pandas as pd
+import sklearn
 
 st.set_page_config(
         page_title="eldery_age_app",
