@@ -20,12 +20,12 @@ st.header('**APPLICATION du travail : "ESTIMATION DE L’AGE AU DECES CHEZ LES S
 st.markdown('---')
 
 st.sidebar.markdown('''
-- <h2><a href="#application" style="color: white;scroll-behavior: smooth;">Application</a></h2>
-- <h2><a href="#mesures" style="color: white;scroll-behavior: smooth;">Mesures</a></h2>
-- <h2><a href="#resultats" style="color: white;scroll-behavior: smooth;">Résultats et metriques d'erreur</a></h2>
-- <h2><a href="#visualisation-du-modele" style="color: white;scroll-behavior: smooth;">Visualisation du modèle</a></h2>
-- <h2><a href="#auteurs" style="color: white;scroll-behavior: smooth;">Auteurs</a></h2>
-- <h2><a href="#contact" style="color: white;scroll-behavior: smooth;">Contact</a></h2>
+- <h2><a href="#application" style="scroll-behavior: smooth;">Application</a></h2>
+- <h2><a href="#mesures" style="scroll-behavior: smooth;">Mesures</a></h2>
+- <h2><a href="#resultats" style="scroll-behavior: smooth;">Résultats et metriques d'erreur</a></h2>
+- <h2><a href="#visualisation-du-modele" style="scroll-behavior: smooth;">Visualisation du modèle</a></h2>
+- <h2><a href="#auteurs" style="scroll-behavior: smooth;">Auteurs</a></h2>
+- <h2><a href="#contact" style="scroll-behavior: smooth;">Contact</a></h2>
 ''', unsafe_allow_html=True)
 
 
