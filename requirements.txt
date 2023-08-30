@@ -1,5 +1,6 @@
 joblib==1.1.1
 numpy==1.21.5
+openpyxl==3.0.10
 pandas==1.5.3
 Pillow
 plotly==5.9.0

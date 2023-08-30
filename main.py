@@ -7,6 +7,7 @@ import pandas as pd
 import sklearn
 from PIL import Image
 from pathlib import Path
+import openpyxl
 
 st.set_page_config(
         page_title="eldery_age_app",
