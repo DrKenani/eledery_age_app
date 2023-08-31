@@ -9,12 +9,21 @@ from PIL import Image
 from pathlib import Path
 import openpyxl
 
+
+
+
 st.set_page_config(
         page_title="eldery_age_app",
 )
-femur_model = joblib.load('modele_femur.joblib')
-colonne_model = joblib.load('modele_colonne.joblib')
-age_model = joblib.load('modele_age.joblib')
+
+
+
+modele_folder = Path(__file__).parent / "modeles"
+
+# Charger les modèles
+femur_model = joblib.load(modele_folder / "modele_femur.joblib")
+colonne_model = joblib.load(modele_folder / "modele_colonne.joblib")
+age_model = joblib.load(modele_folder / "modele_age.joblib")
 
 st.header('**APPLICATION du travail : "ESTIMATION DE L’AGE AU DECES CHEZ LES SUJETS DE PLUS DE 50 ANS : UNE APPROCHE ANTHROPOLOGIQUE NOVATRICE"**')
 st.markdown('---')
