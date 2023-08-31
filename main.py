@@ -17,14 +17,6 @@ st.set_page_config(
 )
 
 
-
-modele_folder = Path(__file__).parent / "modeles"
-
-# Charger les modèles
-femur_model = joblib.load(modele_folder / "modele_femur.joblib")
-colonne_model = joblib.load(modele_folder / "modele_colonne.joblib")
-age_model = joblib.load(modele_folder / "modele_age.joblib")
-
 st.header('**APPLICATION du travail : "ESTIMATION DE L’AGE AU DECES CHEZ LES SUJETS DE PLUS DE 50 ANS : UNE APPROCHE ANTHROPOLOGIQUE NOVATRICE"**')
 st.markdown('---')
 
@@ -41,6 +33,13 @@ st.sidebar.markdown('''
 
 st.subheader('Application')
 container1= st.container()
+# Charger les modèles
+modele_folder = Path(__file__).parent / "modeles"
+
+femur_model = joblib.load(modele_folder / "modele_femur.joblib")
+colonne_model = joblib.load(modele_folder / "modele_colonne.joblib")
+age_model = joblib.load(modele_folder / "modele_age.joblib")
+
 container1.write("Entrez les valeurs pour la prédiction")
 left_col, right_col=container1.columns(2)
 
