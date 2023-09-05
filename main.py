@@ -9,9 +9,6 @@ from PIL import Image
 from pathlib import Path
 import openpyxl
 
-
-
-
 st.set_page_config(
         page_title="eldery_age_app",
 )
@@ -30,7 +27,6 @@ st.sidebar.markdown('''
 ''', unsafe_allow_html=True)
 
 
-
 st.subheader('Application')
 container1= st.container()
 # Charger les modèles
@@ -43,9 +39,9 @@ age_model = joblib.load(modele_folder / "modele_age.joblib")
 container1.write("Entrez les valeurs pour la prédiction")
 left_col, right_col=container1.columns(2)
 
-taille_femur = left_col.number_input("Taille du fémur")
-taille_colonne = left_col.number_input("Taille de la colonne vertébrale")
-densite_osseuse = left_col.number_input("Densité osseuse")
+taille_femur = left_col.number_input("Taille du fémur en cm")
+taille_colonne = left_col.number_input("Taille de la colonne vertébrale en cm")
+densite_osseuse = left_col.number_input("Densité osseuse en UH")
 right_col.empty()
 pred = container1.empty()
 
