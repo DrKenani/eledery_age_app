@@ -14,15 +14,15 @@ st.set_page_config(
 )
 
 
-st.header('**APPLICATION du travail : "ESTIMATION DE L’AGE AU DECES CHEZ LES SUJETS DE PLUS DE 50 ANS : UNE APPROCHE ANTHROPOLOGIQUE NOVATRICE"**')
+st.header('**Application of the Work: "ESTIMATION OF AGE AT DEATH IN SUBJECTS OVER 50 YEARS OLD: AN INNOVATIVE ANTHROPOLOGICAL APPROACH"**')
 st.markdown('---')
 
 st.sidebar.markdown('''
 - <h2><a href="#application" style="scroll-behavior: smooth;">Application</a></h2>
-- <h2><a href="#mesures" style="scroll-behavior: smooth;">Mesures</a></h2>
-- <h2><a href="#resultats" style="scroll-behavior: smooth;">Résultats et metriques d'erreur</a></h2>
-- <h2><a href="#visualisation-du-modele" style="scroll-behavior: smooth;">Visualisation du modèle</a></h2>
-- <h2><a href="#auteurs" style="scroll-behavior: smooth;">Auteurs</a></h2>
+- <h2><a href="#measurements" style="scroll-behavior: smooth;">Measurements</a></h2>
+- <h2><a href="#results" style="scroll-behavior: smooth;">Results and Error Metrics</a></h2>
+- <h2><a href="#model-visualization" style="scroll-behavior: smooth;">Model Visualization</a></h2>
+- <h2><a href="#authors" style="scroll-behavior: smooth;">Authors</a></h2>
 - <h2><a href="#contact" style="scroll-behavior: smooth;">Contact</a></h2>
 ''', unsafe_allow_html=True)
 
@@ -36,17 +36,17 @@ femur_model = joblib.load(modele_folder / "modele_femur.joblib")
 colonne_model = joblib.load(modele_folder / "modele_colonne.joblib")
 age_model = joblib.load(modele_folder / "modele_age.joblib")
 
-container1.write("Entrez les valeurs pour la prédiction")
-left_col, right_col=container1.columns(2)
+container1.write("Enter values for prediction")
+left_col, right_col = container1.columns(2)
 
-taille_femur = left_col.number_input("Taille du fémur en cm")
-taille_colonne = left_col.number_input("Taille de la colonne vertébrale en cm")
-densite_osseuse = left_col.number_input("Densité osseuse en UH")
+taille_femur  = left_col.number_input("Femur length in cm")
+taille_colonne  = left_col.number_input("Vertebral column length in cm")
+densite_osseuse  = left_col.number_input("Bone density in HU")
 right_col.empty()
 pred = container1.empty()
 
 
-if container1.button("Prédire"):
+if container1.button("Predict"):
     taille_par_femur = femur_model.predict([[taille_femur]])
     taille_par_colonne = colonne_model.predict([[taille_colonne]])
 
@@ -61,10 +61,10 @@ if container1.button("Prédire"):
 
     # Prédiction de l'âge
     age_predit = age_model.predict(age_data)
-    container1.write(f"La prédiction de l'âge est : {age_predit[0].round(2)}")
+    container1.write(f"The age prediction is : {age_predit[0].round(2)}")
 
 st.markdown('---')
-st.subheader('Mesures')
+st.subheader('Measurements')
 container2= st.container()
 # Charger les images en utilisant des chemins relatifs
 image_folder = Path(__file__).parent / "images"
@@ -73,24 +73,24 @@ image1 = Image.open(image_folder/"mesure_femur.png")
 image2 = Image.open(image_folder/"mesure_colonne.png")
 image3 = Image.open(image_folder/"mesure_densite.png")
 
-container2.write("Voici comment effectuer les mesures: ")
-container2.image(image1, caption='mesure du fémur')
-container2.write("- La taille du fémur est mesurée sur le fémur droit, en mesurant ligne droite entre le plus haut point et le plus bas")
-container2.image(image2, caption='mesure de la colonne vertébrale')
-container2.write("- La taille de la colonne vertébrale sera mesurée selon la ligne droite entre la première vertèbre cervicale C1 et la dernière vertèbre lombaire L5. Les images scannographiques étant compartimentées, la mesure est réalisée en 2 étapes, en additionnant la taille des vertèbres cervicales à la taille des vertèbres dorsales et lombaires. Mais vous pouvez effectuer la mesure en une seule fois, si vous le pouvez.")
-container2.image(image3, caption='mesure de la densité osseuse')
-container2.write("- La mesure de la densité est effectuée sur les quatre premières vertèbres lombaires et nous utilisons la densité la moins importante enregistrée de L1 à L4.")
+container2.write("Here's how to take the measurements:")
+container2.image(image1, caption='Femur measurement')
+container2.write("- Measure the length of the femur on the right femur by measuring a straight line from the highest point to the lowest point.")
+container2.image(image2, caption='Vertebral column measurement')
+container2.write("- The length of the vertebral column will be measured along a straight line from the first cervical vertebra C1 to the last lumbar vertebra L5. Since the scan images are compartmentalized, the measurement is done in two steps by adding the length of the cervical vertebrae to the thoracic and lumbar vertebrae. However, you can perform the measurement in one go if you are able to do so.")
+container2.image(image3, caption='Bone density measurement')
+container2.write("- Bone density measurement is taken from the first four lumbar vertebrae, using the lowest recorded density from L1 to L4.")
 
 
 st.markdown('---')
 
-st.subheader('Resultats')
+st.subheader('Results')
 container3= st.container()
-container3.write("Résultats et metriques d''erreur")
+container3.write("Results and Error Metrics")
 
 # Affichage des résultats sous forme de tableau
 results_table = """
-|              | R²   | MAE  | MSE   | Erreur maximale | MAPE    | Validation croisée | Coef1 | Coef2 | Ordonnée |
+|              | R²   | MAE  | MSE   | maximum error   | MAPE    | Cross Validation   | Coef1 | Coef2 | Intercept|
 |--------------|------|------|-------|-----------------|---------|--------------------|-------|-------|----------|
 |    Modèle    | 0.73 | 3.94 | 19.54 | 8.69            | 5.73%   | 0.68 ± 0.07        | 1.14  | -7.41 | 98.11    |
 """
@@ -102,7 +102,7 @@ st.markdown('---')
 
 ### modele
 
-st.subheader('Visualisation du modele')
+st.subheader('Model Visualization')
 container4= st.container()
 
 excel_path = Path(__file__).parent / "data/df_for_graph.xlsx"
@@ -147,9 +147,9 @@ container4.plotly_chart(fig)
 
 st.markdown('---')
 
-st.subheader('Auteurs')
+st.subheader('Authors')
 container5= st.container()
-container5.write("Resident Mohamed Kenani sous la direction du Docteur Marwa Boussaid, AHU au service de médecine légale du CHU Tahar Sfar à Mahdia, en Tunisie.")
+container5.write("Resident Mohamed Kenani under the guidance of Dr. Marwa Boussaid, Assistant Hospitalier Universitaire (AHU) at the Forensic Medicine Department of CHU Tahar Sfar in Mahdia, Tunisia.")
 
 with open("style.css") as f:
     st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
